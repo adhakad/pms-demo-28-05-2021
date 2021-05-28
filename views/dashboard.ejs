@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link type="text/css" rel="stylesheet" href="styleses.css">
+    <link type="text/css" rel="stylesheet" href="sty.css">
+    <style>
+      .clearfix{
+         overflow: auto;
+      }
+   </style>
+</head>
+<body>
+  <div class="overlay menu">
+    <ul>
+      <li><a href="/admin-panel" class="bnav-link"><i class="fa fa-laptop icon" style="display: inline-block;"><p style="display: inline-block;margin-left: 50px;">Admin Login</p></i></a></li>
+      <li><a href="/teacher-admin-panel" class="bnav-link"><i class="fa fa-book icon"style="display: inline-block"><p style="display: inline-block;margin-left: 50px;">Teacher Login</p></i></a></li>
+      <li><a href="/admin-panel" class="bnav-link"><i class="fa fa-laptop icon" style="display: inline-block"><p style="display: inline-block;margin-left: 50px;">Admin Login</p></i></a></li>
+      <li><a href="/teacher-admin-panel" class="bnav-link"><i class="fa fa-book icon"style="display: inline-block"><p style="display: inline-block;margin-left: 50px;">Teacher Login</p></i></a></li>
+      <li><a href="/admin-panel" class="bnav-link"><i class="fa fa-laptop icon" style="display: inline-block"><p style="display: inline-block;margin-left: 50px;">Admin Login</p></i></a></li>
+      <li><a href="/teacher-admin-panel" class="bnav-link"><i class="fa fa-book icon"style="display: inline-block"><p style="display: inline-block;margin-left: 50px;">Teacher Login</p></i></a></li>
+    </ul>
+  </div>
+
+  <div class="top-nav clearfix"><h5 style="color:#fff;margin-left:8%;font-size: 50px;color: rgb(66, 15, 184);">TechBista</h5></div>
+    <div class="container-fluid" style="background-color: rgb(250, 248, 252);">
+      <div style="height: 10vh;"></div>
+        <div class="row">                                
+            <div class="col-xs-12  col-md-10 col-md-offset-1">
+              <div class="owl-carousel owl-carousel-fullwidth-a" >
+                <% if(records.length > 0){
+                    records.forEach(function(row){  
+                    %>
+                    
+               <div class="cards" style="box-shadow:0px 2px 8px 0px rgba(0,0,0,0.25);">
+                <%= row.teacher_uid %>
+                   <div class="boxs">  
+                       <div class="imgs">
+                           <img class="img2" src="./uploads/<%= row.image %>">
+                        </div>
+                         
+                       <div class="row">
+                           <div class="col-xs-7">
+                            <% if(row.exist_id!==1234567890){%>
+                              <h2 style="color: #7b7b7b;font-family: sans-serif;font-weight: bold;font-size: 15px;"><%= row.subject_name %>&nbsp;<%= row.class_name %></h2>
+                            <% }%>
+                               
+                               <h6 style="color: #000;font-size: 12px;margin-left: 10px;font-family: sans-serif;font-weight: bold;">Vocabulary by <%= row.teachername %></h6>
+                           </div>
+                           
+                            <% if(row.exist_id==1234567890){%>
+                            <div class="col-xs-5 abc">
+                              <a class="btn btn-md"><p>Join Now</p></a>
+                            </div>
+                            <% } else{%>
+                            <div class="col-xs-5 card-btn">
+                              <a href="/getStudentUser/<%= row.teacher_uid %>"  class="btn btn-md"><p>Join Now</p></a>   
+                            </div> 
+                            
+                            <% } %>
+                                 
+                           
+                           <div class="col-xs-8">
+                            <% if(row.teacher_uid!==1234567890){%>
+                              <h5>Student's 50</h5>
+                              <% }%>
+                               <h6 style="font-size: 11px;font-family: sans-serif;"><p style="color:#7b7b7b;letter-spacing: 1px;">15 min * By <%= row.teachername %></p></h6>
+                           </div>
+                           
+                           <div class="row" style="padding: 15px;">
+                               <div class="col-xs-10 col-xs-offset-1" style="height: 1px;background-color:#a3a3a3;">
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+                <%  }) } %>
+            </div>                 
+            </div>
+
+            <nav class="bnav">
+              <div class="bnav-item">
+                <a class="bnav-link-active"><i class="fa fa-home"></i>Home</a>
+              </div>
+              <div class="bnav-item">
+                <a href="/" class="bnav-link"><i class="fa fa-cog icon"></i>Setting</a>
+              </div>
+              <div class="bnav-item">
+                <a href="/" class="bnav-link"><i class="fa fa-laptop icon"></i>About</a>
+              </div>
+               <div class="bnav-item">
+                <a href="/" class="bnav-link"><i class="fa fa-book icon"></i>Contact</a>
+              </div>
+              <div class="toggle">
+                <div class="kebab menu">
+                  <figure></figure>
+                  <figure></figure>
+                  <figure></figure>
+                </div>
+                <div class="menu">More</div>
+              </div>
+            </nav>
+        </div>
+    </div>    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+  <script src="main.js" defer></script>
+
+
+  <script>
+    $(document).ready(function(){
+      $('.menu').click(function(){
+        $('.overlay').toggleClass('active');
+        $('ul').toggleClass('active');
+      })
+    })
+  </script>
+       </body>
+     </html>

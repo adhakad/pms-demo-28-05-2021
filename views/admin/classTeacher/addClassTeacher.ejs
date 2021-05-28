@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <h1>All Class Teacher </h1>
+            <br>
+            <% if(msg !=''){ %>
+              <p style="text-align: center">   <%= msg %></p>
+              <% } %>
+            
+            <form action="/classTeacher/addClassTeacher" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
+                          
+              <input type="text" value="<%= records.teachername %>" name="tname">           
+              <input type="number" value="<%= records.teacher_uid %>"  name="teacher_uid">               
+              <input type="number"  name="class_name" placeholder="Class name" required>               
+              <input type="text" value="<%= records.class_teacher_status %>" name="class_teacher_status">
+                                        
+              <div class="form-group">
+                  <!-- Button -->                                        
+                  <div class="col-md-offset-3 col-md-9">
+                      
+                    <input type="submit" name="submit" value="Submit" class="btn btn-primary">   
+                    
+                  
+                  
+                  </div>
+              </div>
+          </form>
+   
+  </body>
+</html>

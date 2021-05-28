@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    
+           <% if(records.length >0){
+            records.forEach(function(row){
+            %>
+            
+
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div style="height: 300px;margin-top: 100px;color:#918f96;border: 3px solid #d8d8d8;border-radius: 20px;">
+                    <a href="/classTeacher/addClassTeacher/<%= row.teacher_uid %>" class="btn btn-primary btn-xs"><%= row.teacher_uid %><%= row.teachername %></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <%  }) } %> 
+
+                  
+
+
+  </body>
+</html>

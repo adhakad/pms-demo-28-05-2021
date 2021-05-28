@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link type="text/css" rel="stylesheet" href="styleses.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+  <script src="main.js" defer></script>
+ 
+</head>
+  <body>
+        <nav class="navbar navbar-default">
+                <div class="container">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Password Management System</a>
+                  </div>
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/add-new-category" class="dropdown-item">Add New Category</a></li>
+                    <li><a href="/passwordCategory" class="dropdown-item">View All Category</a></li>
+                    <li><a href="/teacher">Teacher Details</a></li>
+                    <li><a href="/classname">Class Details</a></li>
+                   
+                    
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                  <div class="navbar-header" style="float: right;"> <a class="navbar-brand" href="#">Loggedin As: <% if(loginUser){ %> <%= loginUser  %> <% } %></a></div>
+                </div>
+              </nav>

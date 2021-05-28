@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" /> 
+    <script>
+      const ROOM_ID = "<%= roomId %>";
+      const ROOMH_ID = "<%= roomH_id %>";
+    </script>
+    <script
+      src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"
+      defer
+    ></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="script.js" defer></script>
+    <title>Video Chat Room</title>
+    <meta
+      name="description"
+      content="A fun open, private, and multiple user chat room inspired by zoom using WebRTC."
+    />
+    <meta property="og:title" content="Video Chat Room by Spanion" />
+    <meta
+      property="og:url"
+      content="https://spanion-video-chat.herokuapp.com/"
+    />
+    <meta
+      property="og:description"
+      content="A fun open, private, and multiple user chat room inspired by zoom using WebRTC."
+    />
+    <meta name="twitter:title" content="Video Chat Room by Spanion" />
+    <meta
+      name="twitter:description"
+      content="A fun open, private, and multiple user chat room inspired by zoom using WebRTC."
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="heading">Chat Room</div>
+    <div id="video-grid"></div>
+    <div id="pause-video" class="d-flex emoji-btn">🐵</div>
+    <div id="mute-video" class="d-flex emoji-btn">🔊</div>
+  </body>
+</html>

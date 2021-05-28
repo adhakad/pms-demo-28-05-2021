@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link type="text/css" rel="stylesheet" href="sty.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+    <style>
+      .clearfix{
+         overflow: auto;
+      }
+   </style>
+</head>
+
+  <body style="background-color: rgb(250, 248, 252);">
+
+
+  <div class="overlay menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">About</a></li>
+      <% if(result.length >0){
+        result.forEach(function(row){
+        %>
+
+        <% if(row.teacher_uid){ %>
+          <a href="/studentUser/<%= row.class_name %>" style="font-size: 35px;"><%= row.class_name  %></a>
+          <% }%>
+        <%  }) } %>
+
+        <% if(datas){ %>
+          <form action="/teacher-admin-dashboard/posts"  method="post">                    
+                <input type="hidden" class="form-control" value="<%= datas.teacher_id %>" name="teacher_id">
+                <input type="hidden" class="form-control" value="<%= datas.password %>" name="password">
+          <div class="form-group">                                       
+              <div class="col-md-offset-3 col-md-9">
+                <% if(records.teacher_uid==records.exist_id){%>
+              <input type="submit" name="submit" value="Join Class" class="btn btn-primary"> 
+              <% } else{%>
+                <input type="submit" name="submit" value="Start Class" class="btn btn-primary">
+                <% } %>
+              </div>
+          </div>
+        </form>
+        <% }%>
+    </ul>
+</div>
+
+
+    <div class="top-nav clearfix"><h5 style="color:#fff;margin-left:8%;font-size: 50px;color: rgb(66, 15, 184);">TechBista</h5></div>
+    <div style="height: 10vh;"></div>   
+            
+            <% if(datas){ %>
+              <div class="container">
+                <div class="row">
+                  <h1>All Class List</h1>
+                    <br>
+                   <table class="table table-striped table-primary">
+                    <thead>
+                      <tr>
+                        <th>Class Name</th>
+                        <th>Subject Name</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= datas.class_name %></td>
+                        <td><%= datas.subject_name %></td>
+                        <td>
+                          <a href="#" class="delete btn btn-danger" id= "<%= datas.teacher_id %>">delete &nbsp;</a>   
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            <% }else{%>
+              <div class="container">
+                <div class="row">
+                  <h2 class="text-center">Create Class Room</h2>
+                  <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                      <div class="panel panel-info">
+                          <div class="panel-heading">
+                              <div class="panel-title">Class Room Create<div style="color: #000;" id="postResultDiv">
+                              </div></div>
+                               </div> 
+                          <div class="panel-body">
+                            <form id="userForm" class="form-horizontal"  role="form">
+                                    
+              
+                                    <div class="form-group">
+                                      <label for="class" class="col-md-3 control-label">Class Name</label>
+                                      <div class="col-md-9">
+                                          <input type="number" class="form-control" id="class_name" placeholder="Enter Class Name" required>
+                                      </div>
+                                  </div>                        
+                                  <div class="form-group">
+                                    <label for="subject_name" class="col-md-3 control-label">Subject Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="subject_name" placeholder="Enter Subject Name" required>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="form-group">
+                                    <label for="room_id" class="col-md-3 control-label">Room Id</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" id="room_id" placeholder="Enter Room Id" required>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                    <input type="submit" name="submit" value="submit" class="btn btn-primary">   
+                                    </div>
+                                  </div>                         
+                                    </form>
+                                 </div>
+                            </div>
+                          </div> 
+                        </div>
+                      </div>
+            <% }%>
+  
+                                        
+<nav class="bnav">
+  <div class="bnav-item">
+    <a href="/" class="bnav-link-active"><i class="fa fa-envelope"></i>Inbox</a>
+  </div>
+  <div class="bnav-item">
+    <a href="#" class="bnav-link"><i class="fa fa-link icon"></i>Subscriptions</a>
+  </div>
+   <div class="bnav-item">
+    <a href="#" class="bnav-link"><i class="fa fa-laptop icon"></i>Admin</a>
+   </div>
+   <div class="bnav-item">
+    <a href="#" class="bnav-link"><i class="fa fa-book icon"></i>teacher</a>
+  </div>
+  <div class="toggle">
+    <div class="kebab menu">
+      <figure></figure>
+      <figure class="middle"></figure>
+      <figure></figure>
+    </div>
+    <div class="menu">More</div>
+  </div>
+</nav>   
+  
+
+
+<script>
+  $(document).ready(function(){
+    $('.menu').click(function(){
+      $('.overlay').toggleClass('active');
+      $('ul').toggleClass('active');
+    })
+  })
+</script>
+        
+              <script>
+                $( document ).ready(function() {
+                
+                // SUBMIT FORM
+                  $("#userForm").submit(function(event) {
+                  // Prevent the form from submitting via the browser.
+                  event.preventDefault();
+                  ajaxPost();
+                });
+                  
+                  
+                  function ajaxPost(){
+                    
+                    // PREPARE FORM DATA
+                    var formData = {
+                      class_name : $("#class_name").val(),
+                      subject_name : $("#subject_name").val(),
+                      room_id : $("#room_id").val(),
+                      
+                    }
+                    
+                    // DO POST
+                    $.ajax({
+                    type : "POST",
+                    contentType : "application/json",
+                    url : window.location + "/post",
+                    data : JSON.stringify(formData),
+                    dataType : 'json',
+                    success : function(result, status, xhr) { 
+                      
+                        window.location.href = result.redirects
+                      
+                    },
+              
+                    error : function(e) {
+                      $("#postResultDiv").html("<p>" + "Post Already Exist On MongoDB Database! <br>" +"</p>"); 
+                    }
+                  })
+                      
+                    // Reset FormData after Posting
+                    resetData();
+              
+                  }
+              
+                  function resetData(){
+                      $("#class_name").val("");
+                      $("#subject_name").val("");
+                      $("#room_id").val("");
+                      
+                    }
+
+              })
+              </script>
+
+
+
+<script>
+  $(document).ready(function () {
+     $(".delete").on('click', function(event) {
+       event.preventDefault()
+       const sid = $(event.target).attr('id')
+       $.ajax({
+         url: '/teacher-admin-dashboard/delete',
+         method: 'delete',
+         data: {id: sid},
+         success: function(result, status, xhr) {
+          window.location.href = result.redirects  
+         },
+         error: function(xhr, status, error) {
+           console.log('error')
+         }
+       })
+     })
+
+     
+   })
+   </script>
+
+
+       </body>
+</html>
+     

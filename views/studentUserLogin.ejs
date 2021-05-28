@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <h2 class="text-center">Student login</h2>
+        <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title"> Student login <div style="color: #000;" id="postResultDiv">
+                    </div></div>
+                     </div> 
+                <div class="panel-body">
+                  <form id="userForm" class="form-horizontal"  role="form">                                   
+                    <div class="form-group">
+                      <label for="student_name" class="col-md-3 control-label">Student Name</label>
+                      <div class="col-md-9">
+                          <input type="text" class="form-control" id="student_name" placeholder="Enter Your Name..." required>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="student_id" class="col-md-3 control-label">Student Id</label>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control" id="student_id" placeholder="Enter Your Id..." required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                      <input type="password" class="form-control" id="password" placeholder="Enter Your password..." required>
+                    </div>
+                  </div>  
+                  <div class="form-group">                                        
+                    <div class="col-md-offset-3 col-md-9">
+                      <input type="submit" name="submit" value="login" class="btn btn-primary">   
+                    </div>
+                  </div>
+                </form>
+                </div>
+            </div>        
+          </div> 
+        </div>
+    </div>
+
+
+<script>
+  $( document ).ready(function() {
+  // SUBMIT FORM
+    $("#userForm").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+    ajaxPost();
+  });
+    function ajaxPost(){
+      // PREPARE FORM DATA
+      var formData = {
+        student_name : $("#student_name").val(),
+        student_id : $("#student_id").val(),
+        password : $("#password").val(),
+      }
+      // DO POST
+      $.ajax({
+      type : "POST",
+      contentType : "application/json",
+      url : window.location + "/post",
+      data : JSON.stringify(formData),
+      dataType : 'json',
+      success : function(result, status, xhr) {
+        if(result.redirectTo){
+          $("#postResultDiv").html("<p>"+result.redirectTo+"</p>");
+        }else if(result.redirect){
+          window.location.href = result.redirect
+        }
+      },
+      error : function(e) {
+        $("#postResultDiv").html("<p>" + "Post Already Exist On MongoDB Database! <br>" +"</p>"); 
+      }
+    })   
+      // Reset FormData after Posting
+      resetData();
+    }
+    function resetData(){
+        $("#student_name").val("");
+        $("#student_id").val("");
+        $("#password").val("");
+      }
+})
+</script>
+
+  </body>
+</html>

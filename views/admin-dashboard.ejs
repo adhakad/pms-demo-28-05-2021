@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link type="text/css" rel="stylesheet" href="sty.css">
+    <link rel="stylesheet" rel="stylesheet" href="styleses.css">
+    <style>
+      .clearfix{
+         overflow: auto;
+      }
+      .taskrow{
+        height: 670px;
+        color:#918f96;
+        border-top: 4px solid #eeebef;
+        border-bottom: 4px solid #eeebef;
+      }
+      .bottom-margin{
+        height: 50px;
+        background-color:#ffffff;
+      }
+      .toggle-div-margin{
+        margin-top: 20px;
+      }
+      .toggle-base-allow{
+        width:75px;height:38px;background-color:rgb(185, 185, 231);z-index: 1;position: absolute;margin-top: 44px;margin-left: 10px;border: 1px solid rgb(177, 166, 218);border-radius:35px 0 0 35px;
+      }
+      .toggle-base-deny{
+        width: 75px;height:38px;background-color: rgb(199, 200, 202);z-index: 1;position: absolute;margin-top: 44px;margin-left: 18px;border: 1px solid rgb(189, 189, 190);border-radius:0 35px 35px 0;
+      }
+      .toggle-top-allow{
+        width: 55px;height: 55px;background-color:rgb(88, 68, 204);z-index: 2;position: relative;margin-top: 35px;border-radius: 50%;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.30);margin-left: 50px;
+      }
+      .toggle-top-deny{
+        width: 55px;height: 55px;background-color:rgb(244, 244, 245);z-index: 2;position: relative;margin-top: 35px;border-radius: 50%;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.30); 
+      }
+      .modal{
+        margin-top:30vh;
+        right: 12%;
+      }
+      .modal-content{
+        width: 120%;
+        height:25vh;
+        font-size: 35px;
+        padding: 50px;
+        border-radius: 15px 15px 15px 15px;
+      }
+      .modal-btn{
+        color: rgb(114, 114, 114);
+        font-size: 35px;
+        width: 25%;
+        border: 2px solid rgb(219, 219, 219);
+        border-radius: 8%;
+      }
+      .img2{
+        border:5px solid rgb(117, 107, 252);border-radius:50%;
+      }
+      .fa-trash-o{
+        color:#918f96;font-size:50px;margin-top: 20px;
+      }
+      h2{
+        font-size: 37px;
+        letter-spacing: .025em;
+        font-weight: 900;
+        color: #483884;
+      }
+      h3{
+        letter-spacing: .02em;
+        font-weight: 900;
+        font-size: 40px;
+        color:rgb(101, 83, 199);
+        margin-top: 45px;
+      }
+      h4{
+        font-size: 38px;
+        font-weight: 500;
+        color: rgb(81, 81, 83);
+        margin-top: 20px;
+      }
+      p{
+        font-size: 37px;
+        font-weight: 100;
+        letter-spacing: .025em;
+        color: rgb(75, 75, 78);
+      }
+   </style>
+</head>
+<body>
+
+
+  <div class="overlay menu">
+    <ul>
+      <li><a href="/studentUser">Add Student</a></li>
+      <li><a href="/teacher">Add Teacher</a></li>
+      <li><a href="/classTeacher">Add Class Teacher</a></li>
+      <li><a href="/totalAdminClass">Create All Class</a></li>
+    </ul>
+  </div>
+  <div class="top-nav clearfix"><h5 style="color:#fff;margin-left:8%;font-size: 50px;color: rgb(66, 15, 184);">TechBista</h5></div>
+
+<div style="height: 10vh;"></div>
+    <div class="container-fluid">
+      <div class="row">
+        
+          <h1>All Teacher's List</h1>
+          <br>
+          <div class="tblData">
+            <div class="cards" style="background-color: #fafafb">
+              <div id="abc"></div>
+              <div id="class_teacher_status"></div>
+              <div id="abcde"></div>
+            </div>
+            <div style="height: 15vh;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <nav class="bnav" style="background-color: #fafaff;">
+    <div class="bnav-item">
+      <a class="bnav-link-active"><i class="fa fa-laptop icon"></i>Admin</a>
+    </div>
+    <div class="bnav-item">
+      <a href="/totalAdminClassList" class="bnav-link"><i class="fa fa-setting icon"></i>Classes</a>
+    </div>
+    <div class="bnav-item">
+      <a href="/studentList" class="bnav-link"><i class="fa fa-envelope"></i>Student</a>
+    </div>
+     <div class="bnav-item">
+      <a href="#" class="bnav-link"><i class="fa fa-book icon"></i>Demo</a>
+    </div>
+    <div class="toggle">
+      <div class="kebab menu">
+        <figure></figure>
+        <figure class="middle"></figure>
+        <figure></figure>
+      </div>
+      <div class="menu">More</div>
+    </div>
+  </nav>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+  <script src="main.js" defer></script>
+
+
+  <script>
+    $(document).ready(function(){
+    
+    
+    
+    getdata();
+    
+    function getdata(){
+    $.ajax({
+    type : "GET",
+    url : "/admin-dashboard/get",
+    dataType:'json',
+    success:function(response){
+    if(response.msg=='success'){
+      if(response.data==undefined || response.data==null || response.data==''){
+          $('.tblData').hide();
+      }else{
+         $('.tblData').show();
+      $.each(response.data,function(index,data){
+          var url = url+data._id;
+          index+=1;
+          var teacher_status =data.teacher_status;
+          var class_teacher_status =data.class_teacher_status;
+          if(teacher_status=='disabled' && class_teacher_status=='inactive'){                                                                                                                                                                                                                           
+            $('.cards').append("<div class='taskrow'><div class='col-xs-12'><div class='col-xs-11'><h4>"+ index +"</h4></div><div class='col-xs-1'><a data-toggle='modal' data-target='#"+data.teacher_uid+"'><i class='fa fa-trash-o'></i></a></div><div class='col-xs-12' style='text-align:left;margin-top:10px;margin-bottom:40px;'><div class='col-xs-2'><img class='img2' src='./uploads/"+data.image+"' width='150' height='140'></div><div class='col-xs-10'><h3>"+data.teachername+" - "+data.teacher_uid+"</h3></div></div>"+"<div class='col-xs-12'><div class='col-xs-10'><h2>Always Allow Teacher Login</h2><p>Always permission allow for teacher login</p></div><div class='col-xs-2'><a class='btn toggle-base-deny'></a><a class='btn toggle-top-deny' data-toggle='modal' data-target='#"+data._id+"'></a></div></div>"+"<div class='col-xs-12 toggle-div-margin'><div class='col-xs-10'><h2>Always Allow Class Teacher</h2><p>Always permission allow class teacher login all classes for future</p></div><div class='col-xs-2'><a class='btn toggle-base-deny'></a><a class='btn toggle-top-deny' data-toggle='modal' data-target='#"+data._id+data.teacher_uid+"'></a></div></div></div></div><div class='bottom-margin'></div>");
+          }else if (teacher_status=='disabled' && class_teacher_status=='active'){
+            $('.cards').append("<div class='taskrow'><<div class='col-xs-12'><div class='col-xs-11'><h4>"+ index +"</h4></div><div class='col-xs-1'><a data-toggle='modal' data-target='#"+data.teacher_uid+"'><i class='fa fa-trash-o'></i></a></div><div class='col-xs-12' style='text-align:left;margin-top:10px;margin-bottom:40px;'><div class='col-xs-2'><img class='img2' src='./uploads/"+data.image+"' width='150' height='140'></div><div class='col-xs-10'><h3>"+data.teachername+" - "+data.teacher_uid+"</h3></div></div>"+"<div class='col-xs-12'><div class='col-xs-10'><h2>Always Allow Teacher Login</h2><p>Always permission allow for teacher login</p></div><div class='col-xs-2'><a class='btn toggle-base-deny'></a><a class='btn toggle-top-deny' data-toggle='modal' data-target='#"+data._id+"'></a></div></div>"+"<div class='col-xs-12 toggle-div-margin'><div class='col-xs-10'><h2>Always Deny Class Teacher</h2><p>Always permission deny class teacher login</p></div><div class='col-xs-2'><a class='btn toggle-base-allow'></a><a class='btn toggle-top-allow' data-toggle='modal' data-target='#"+data._id+data.teacher_uid+"'></a></div></div></div></div><div class='bottom-margin'></div>");
+          }else if (teacher_status=='enabled' && class_teacher_status=='inactive'){
+            $('.cards').append("<div class='taskrow'><div class='col-xs-12'><div class='col-xs-11'><h4>"+ index +"</h4></div><div class='col-xs-1'><a data-toggle='modal' data-target='#"+data.teacher_uid+"'><i class='fa fa-trash-o'></i></a></div><div class='col-xs-12' style='text-align:left;margin-top:10px;margin-bottom:40px;'><div class='col-xs-2'><img class='img2' src='./uploads/"+data.image+"' width='150' height='140'></div><div class='col-xs-10'><h3>"+data.teachername+" - "+data.teacher_uid+"</h3></div></div>"+"<div class='col-xs-12'><div class='col-xs-10'><h2>Always Deny Teacher Login</h2><p>Always permission deny for teacher login</p></div><div class='col-xs-2'><a class='btn toggle-base-allow'></a><a class='btn toggle-top-allow' data-toggle='modal' data-target='#"+data._id+"'></a></div></div>"+"<div class='col-xs-12 toggle-div-margin'><div class='col-xs-10'><h2>Always Allow Class Teacher</h2><p>Always permission allow class teacher login</p></div><div class='col-xs-2'><a class='btn toggle-base-deny'></a><a class='btn toggle-top-deny' data-toggle='modal' data-target='#"+data._id+data.teacher_uid+"'></a></div></div></div></div><div class='bottom-margin'></div>");
+          }else{
+            $('.cards').append("<div class='taskrow'><div class='col-xs-12'><div class='col-xs-11'><h4>"+ index +"</h4></div><div class='col-xs-1'><a data-toggle='modal' data-target='#"+data.teacher_uid+"'><i class='fa fa-trash-o'></i></a></div><div class='col-xs-12' style='text-align:left;margin-top:10px;margin-bottom:40px;'><div class='col-xs-2'><img class='img2' src='./uploads/"+data.image+"' width='150' height='140'></div><div class='col-xs-10'><h3>"+data.teachername+" - "+data.teacher_uid+"</h3></div></div>"+"<div class='col-xs-12'><div class='col-xs-10'><h2>Always Deny Teacher Login</h2><p>Always permission deny for teacher login</p></div><div class='col-xs-2'><a class='btn toggle-base-allow'></a><a class='btn toggle-top-allow' data-toggle='modal' data-target='#"+data._id+"'></a></div></div>"+"<div class='col-xs-12 toggle-div-margin'><div class='col-xs-10'><h2>Always Deny Class Teacher</h2><p>Always permission deny class teacher login</p></div><div class='col-xs-2'><a class='btn toggle-base-allow'></a><a class='btn toggle-top-allow' data-toggle='modal' data-target='#"+data._id+data.teacher_uid+"'></a></div></div></div></div><div class='bottom-margin'></div>");
+          }
+    
+          if(teacher_status=='disabled'){
+            $('#abc').append("<div class='modal fade' id="+data._id+" role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button> <h4 class='modal-title'>abc</h4></div><div class='modal-body'>abc</div><div class='modal-footer'><button class='enable_t_status btn btn-default modal-btn'  value='"+data._id+"'>Ok</button></div></div></div></div>");
+          }else{
+            $('#abc').append("<div class='modal fade' id="+data._id+" role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button> <h4 class='modal-title'>abc</h4></div><div class='modal-body'>abc</div><div class='modal-footer'><button class='disable_t_status btn btn-default modal-btn'  value='"+data._id+"'>Ok</button></div></div></div></div>");
+          }
+    
+          if(class_teacher_status=='inactive'){
+            $('#class_teacher_status').append("<div class='modal fade' id="+data._id+data.teacher_uid+" role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button> <h4 class='modal-title'>abc</h4></div><div class='modal-body'>abc</div><div class='modal-footer'><button class='active_c_t_status btn btn-default modal-btn'  value='"+data._id+"'>Ok</button></div></div></div></div>");
+          }else{
+            $('#class_teacher_status').append("<div class='modal fade' id="+data._id+data.teacher_uid+" role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button> <h4 class='modal-title'>abc</h4></div><div class='modal-body'>abc</div><div class='modal-footer'><button class='inactive_c_t_status btn btn-default modal-btn'  value='"+data._id+"'>Ok</button></div></div></div></div>");
+          }
+            
+          $('#abcde').append("<div class='modal fade' id="+data.teacher_uid+" role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'>&times;</button> <h4 class='modal-title'>abc</h4></div><div class='modal-body'>abc</div><div class='modal-footer'><button class='del btn btn-default modal-btn'  value='"+data._id+"'>Ok</button></div></div></div></div>");                     
+      });
+    }
+    }
+    },
+    error:function(response){
+        alert('server error');
+    }
+    });
+    }
+    /*----------------------------------------------------------------------------*/
+    $(document).on('click','button.del',function(){
+    var id = $(this).parent().find('button.del').val();
+    $.ajax({
+    url:'/admin-dashboard/delete',
+    method:'delete',
+    dataType:'json',
+    data:{'id':id},
+    success:function(response){
+    if(response.msg=='success'){
+      location.reload();
+    }else{
+      alert('data not get deleted');
+    }
+    },
+    error:function(response){
+         alert('server error')   
+    }
+    });
+    });
+    
+    /*----------------------------------------------------------------------------*/
+    $(document).on('click','button.enable_t_status',function(){
+    var id = $(this).parent().find('button.enable_t_status').val();
+    $.ajax({
+    url:'/admin-dashboard/enable_t_status',
+      method:'put',
+      dataType:'json',
+      data:{'id':id},
+      success:function(response){
+        location.reload();
+      },
+      error:function(response){
+               alert('server error')   
+      }
+    });
+    });
+    
+    $(document).on('click','button.disable_t_status',function(){
+    var id = $(this).parent().find('button.disable_t_status').val();
+    $.ajax({
+    url:'/admin-dashboard/disable_t_status',
+      method:'put',
+      dataType:'json',
+      data:{'id':id},
+      success:function(response){
+        location.reload();
+      },
+      error:function(response){
+               alert('server error')   
+      }
+    });
+    });
+    
+    
+    $(document).on('click','button.active_c_t_status',function(){
+    var id = $(this).parent().find('button.active_c_t_status').val();
+    $.ajax({
+    url:'/admin-dashboard/active_c_t_status',
+      method:'put',
+      dataType:'json',
+      data:{'id':id},
+      success:function(response){
+        location.reload();
+      },
+      error:function(response){
+               alert('server error')   
+      }
+    });
+    });
+    
+    $(document).on('click','button.inactive_c_t_status',function(){
+    var id = $(this).parent().find('button.inactive_c_t_status').val();
+    $.ajax({
+    url:'/admin-dashboard/inactive_c_t_status',
+      method:'put',
+      dataType:'json',
+      data:{'id':id},
+      success:function(response){
+        location.reload();
+      },
+      error:function(response){
+               alert('server error')   
+      }
+    });
+    });
+    
+    
+    
+    
+    });
+    </script>
+
+   
+  <script>
+    $(document).ready(function(){
+      $('.menu').click(function(){
+        $('.overlay').toggleClass('active');
+        $('ul').toggleClass('active');
+      })
+    })
+  </script>
+  </body>
+</html>
+     

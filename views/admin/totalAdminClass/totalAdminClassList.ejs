@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link type="text/css" rel="stylesheet" href="styleses.css">
+</head>
+  <body>
+    
+              </nav>
+              <nav class="navbar navbar-default">
+                <div class="container">
+                  
+                  <ul class="nav navbar-nav">
+                    <li><a href="#" class="dropdown-item">demo</a></li>
+                  </ul>
+                 
+                </div>
+              </nav>
+
+              <div class="container">
+                <div class="row">
+                    <h1>All Class List</h1>
+                    <br>
+                 <table class="table table-striped table-primary">
+                  <thead>
+                    <tr>
+                      
+                      <th>Class Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <% if(records.length >0){
+                    records.forEach(function(row){
+                    %>
+                    <tr>
+                      <td><%= row.class_name %></td>
+                      <td><%= row.class_name %></td>
+                    </tr>
+                    <%  }) } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+              
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+  <script src="main.js" defer></script>
+       </body>
+     </html>
+     

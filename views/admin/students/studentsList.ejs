@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+    <style>
+      .taskrow{
+        height: 500px;
+        color:#918f96;
+        border-top: 4px solid #eeebef;
+        border-bottom: 4px solid #eeebef;
+      }
+      .bottom-margin{
+        height: 50px;
+        background-color:#ffffff;
+      }
+      .toggle-div-margin{
+        margin-top: 20px;
+      }
+      .toggle-base-allow{
+        width:75px;height:38px;background-color:rgb(185, 185, 231);z-index: 1;position: absolute;margin-top: 44px;margin-left: 10px;border: 1px solid rgb(177, 166, 218);border-radius:35px 0 0 35px;
+      }
+      .toggle-base-deny{
+        width: 75px;height:38px;background-color: rgb(199, 200, 202);z-index: 1;position: absolute;margin-top: 44px;margin-left: 18px;border: 1px solid rgb(189, 189, 190);border-radius:0 35px 35px 0;
+      }
+      .toggle-top-allow{
+        width: 55px;height: 55px;background-color:rgb(88, 68, 204);z-index: 2;position: relative;margin-top: 35px;border-radius: 50%;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.30);margin-left: 50px;
+      }
+      .toggle-top-deny{
+        width: 55px;height: 55px;background-color:rgb(244, 244, 245);z-index: 2;position: relative;margin-top: 35px;border-radius: 50%;box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.30); 
+      }
+      .modal{
+        margin-top:30vh;
+        right: 12%;
+      }
+      .modal-content{
+        width: 120%;
+        height:25vh;
+        font-size: 35px;
+        padding: 50px;
+        border-radius: 15px 15px 15px 15px;
+      }
+      .modal-btn{
+        color: rgb(114, 114, 114);
+        font-size: 35px;
+        width: 25%;
+        border: 2px solid rgb(219, 219, 219);
+        border-radius: 8%;
+      }
+      .img2{
+        border:5px solid rgb(117, 107, 252);border-radius:50%;
+      }
+      .fa-trash-o{
+        color:#918f96;font-size:50px;margin-top: 20px;
+      }
+      h2{
+        font-size: 37px;
+        letter-spacing: .025em;
+        font-weight: 900;
+        color: #483884;
+      }
+      h3{
+        letter-spacing: .02em;
+        font-weight: 900;
+        font-size: 40px;
+        color:rgb(101, 83, 199);
+        margin-top: 60px;
+      }
+      h4{
+        font-size: 38px;
+        font-weight: 500;
+        color: rgb(81, 81, 83);
+        margin-top: 20px;
+      }
+      p{
+        font-size: 37px;
+        font-weight: 100;
+        letter-spacing: .025em;
+        color: rgb(75, 75, 78);
+      }
+    </style>
+
+</head>
+  <body>
+    
+
+
+
+    <% if(records.length >0){
+      records.forEach(function(row){
+      %>
+      
+        <div class="container-fluid">
+          <div class="row"> 
+            <div class="cards" style="background-color: #fafafb">
+              <div class='taskrow'><div class='col-xs-12'>
+                <div class='col-xs-11'>
+                  <h4>1</h4>
+                </div>
+                <div class='col-xs-1'>
+                  <a data-toggle="modal" data-target="#myModal<%= row.student_id %>"><i class='fa fa-trash-o'></i></a>
+                </div>
+                <div class='col-xs-12' style='text-align:left;margin-top:10px;margin-bottom:40px;'>
+                  <div class='col-xs-12'>
+                    <h3><%= row.student_name %> - <%= row.student_id %></h3>
+                  </div>
+                </div>
+              <% if(row.status==disabled){%>
+                <div class='col-xs-12'>
+                  <div class='col-xs-10'>
+                    <h2>Always Allow Teacher Login</h2>
+                    <p>Always permission allow for teacher login</p>
+                  </div>
+                  <div class='col-xs-2'><a class='btn toggle-base-deny'></a>
+                    <a class='btn toggle-top-deny' data-toggle="modal" data-target="#myModalStatus<%= row.student_id %>"></a>
+                  </div>
+                </div>
+              <%}else{%>
+                <div class='col-xs-12'>
+                  <div class='col-xs-10'>
+                    <h2>Always Deny Teacher Login</h2>
+                    <p>Always permission Deny for teacher login</p>
+                  </div>
+                  <div class='col-xs-2'><a class='btn toggle-base-allow'></a>
+                    <a class='btn toggle-top-allow' data-toggle="modal" data-target="#myModalStatus<%= row.student_id %>"></a>
+                  </div>
+                </div>
+                <%}%>
+              </div>
+            </div>
+            <div class='bottom-margin'></div>
+          </div>
+        </div>
+      </div>
+           
+
+
+            <div class="modal fade" id="myModal<%= row.student_id %>" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><%= row.student_name %></h4>
+                  </div>
+                  <div class="modal-body">
+                    <%= row.class_name %>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#" class="delete btn btn-danger" id= "<%= row.student_id %>">delete &nbsp;</a>   
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="myModalStatus<%= row.student_id %>" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><%= row.student_name %></h4>                                        
+                  </div>
+                  <div class="modal-body">
+                    <%= row.class_name %>
+                  </div>
+                  <div class="modal-footer">
+                    <% if(row.status==disabled){%>
+                    <a href="#" style="color: #fff;"  class="update btn btn-danger" ids= "<%= row.student_id %>">disable</a>
+                    <%}else{%>
+                      <a href="#" style="color: #fff;"  class="updates btn btn-success" idss= "<%= row.student_id %>">enable</a>
+                      <%}%>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+                    <%  }) } %>
+              </div>
+            </div>
+
+            <script>
+              $(document).ready(function () {
+                 $(".delete").on('click', function(event) {
+                   event.preventDefault()
+                   const sid = $(event.target).attr('id')
+                   $.ajax({
+                     url: '/studentList/delete',
+                     method: 'delete',
+                     data: {id: sid},
+                     success: function(result, status, xhr) {
+                      if(result.msg=='success'){
+                        location.reload();
+                      }  
+                     },
+                     error: function(xhr, status, error) {
+                       console.log('error')
+                     }
+                   })
+                 })
+
+                 $(".update").on('click', function(event) {
+                   event.preventDefault()
+                   const sids = $(event.target).attr('ids')
+                   $.ajax({
+                     url: '/studentList/enable',
+                     method: 'put',
+                     data: {id: sids},
+                     success: function(result, status, xhr) {
+                      if(result.msg=='success'){
+                        location.reload();
+                      }
+                     },
+                     error: function(xhr, status, error) {
+                       console.log('error')
+                     }
+                   })
+                 })
+
+                 $(".updates").on('click', function(event) {
+                   event.preventDefault()
+                   const sidss = $(event.target).attr('idss')
+                   $.ajax({
+                     url: '/studentList/disable',
+                     method: 'put',
+                     data: {id: sidss},
+                     success: function(result, status, xhr) {
+                      if(result.msg=='success'){
+                        location.reload();
+                      }
+                     },
+                     error: function(xhr, status, error) {
+                       console.log('error')
+                     }
+                   })
+                 })
+               })
+               </script>                  
+
+
+       </body>
+     </html>
+     
